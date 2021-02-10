@@ -1,37 +1,40 @@
 package translateStrings
 
 import (
+	"translateStrings/translateStrings/factory"
 	"reflect"
 	"testing"
 )
 
 func Test_translateString_Translate(t *testing.T) {
 	type args struct {
-		inText     String
-		fmtOrigin  String
-		fmtDestiny String
+		inText     string
+		fmtOrigin  string
+		fmtDestiny string
 	}
-	factory := NewFactoryEncoder()
-	translate := translate.NewTranslateString(factory)
+	factory := factory.NewFactoryEncoder()
+	translate := NewTranslateString(factory)
 
 	testArgs := args{
-		inText: 	"A"
-		fmtOrigin:  "TEXTO"
-		fmtDestiny: "BINARY"
+		inText: 	"A",
+		fmtOrigin:  "TEXT",
+		fmtDestiny: "BINARY",
 	}
 
 	tests := []struct {
 		name      string
 		translate *translateString
 		args      args
-		want      String
+		want      string
 		wantErr   bool
 	}{
-		name      "test de translate"
-		translate translate
-		args      testArgs
-		want      "01000001"
-		wantErr   false
+		{
+			name:      "Test de translate",
+			translate: translate,
+			args:      testArgs,
+			want:      "01000001",
+			wantErr:   false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

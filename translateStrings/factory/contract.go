@@ -2,7 +2,7 @@ package factory
 
 type Factory interface{
 	GetEncoder(encoder string) *map[string]string
-	setTBinary(encoder string)
+	setTBinary()
 }
 
 type factoryEncoder struct {
@@ -24,7 +24,7 @@ func NewFactoryEncoder() *factoryEncoder {
 	}
 }
 
-func (factory factoryEncoder) GetEncoder(encode string) *map[string]string {
+func (factory *factoryEncoder) GetEncoder(encode string) *map[string]string {
 
 	var m *map[string]string
 	switch encode {
@@ -38,7 +38,7 @@ func (factory factoryEncoder) GetEncoder(encode string) *map[string]string {
 	return m
 }
 
-func (factory factoryEncoder) setTBinary(){
+func (factory *factoryEncoder) setTBinary(){
 	factory.tBinary = &map[string]string{
 		"A": "01000001",
 		"B": "01000010",

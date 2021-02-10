@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-	factory := NewFactoryEncoder()
+	factory := factory.NewFactoryEncoder()
 
 	translate := translate.NewTranslateString(factory)
 
-	textoBinario := translate.Translate("TRADUCIR","TEXT","BINARY")
+	textoBinario,_ := translate.Translate("A","TEXT","BINARY")
 
 	fmt.Printf(textoBinario)
 }
