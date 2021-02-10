@@ -2,13 +2,16 @@ package translateStrings
 
 import (
 	"translateStrings/translateStrings/factory"
-	"fmt"
 )
 
 type translateString struct {
 	factory *factory.Factory
 }
 
+//contructor
+//parametros:
+//	factory: factory usado para obtener el encoder a usar para traducir el texto desde el formato
+//			origen hacia el formato destino
 func NewTranslateString(factory *factory.Factory) *translateString {
 	return &translateString{
 		factory: factory,
@@ -28,8 +31,10 @@ func (translate *translateString) Translate(inText string,fmtOrigin string, fmtD
 	switch fmtOrigin {
 	case TEXT: 
 		if(fmtDestiny == BINARY){
-			encoder = factory.GetEncoder("TEXT_BINARY")[]
+			encoder = factory.GetEncoder("TEXT_BINARY")
 		}
+		//aquí debe recorrer el string de entrada y usar el encoder para traducirlo
+		outText = encoder[inText]
 	default: 
 		err = errors.New("ocurrio un error, formato invalido")	
 	}
